@@ -1,0 +1,49 @@
+What I will do if I have to search logs on my PC ?
+1. Download any log analysis tool.
+2. Search for the any log file or folder in the PC.
+3. Open activity monitor and check for any suspicious processes running in the background.
+4. Open CLI and search for any log related command and use it.
+5. Check for any suspicious additon or removal of files in the PC.
+
+Q.Start with man log. Read the first two paragraphs of DESCRIPTION, not the whole thing.
+Ans. log show
+Q.There’s another place logs live on your machine, much older than the one you just found, and it works
+completely differently. This one is the same on macOS and Linux.
+Ans. In Machintosh HD > Library > Logs, you can find the system logs.
+Q.One file you found, and what it seems to be for:
+Ans. Any crash report file found in the Logs folder, which seems to be for reporting application crashes and errors.
+     System log file, which seems to be for recording system events and messages.
+Q.How do you get a bounded window of log output into a file that belongs to you?
+Ans. log show --last num[s|m|h|d]
+     log show --last 1h > file.txt
+Q.Now go look at what you made
+Find out how big that file is. 13.12 MB
+Size: What command told you the file size? 
+Ans. ls -lh filename
+Q.Final file path: /Users/sabhya_abhay/desktop
+Q.How many lines are in it? 
+Ans. 17563 log_report.txt
+Q.Command to count lines : wc -lh filename
+Q.What command can help you see just the first few lines of the file?
+Ans. head -n 10 filename
+one such line : 2026-10-22 15:53:36.106685+0530 0x153d     Default     0x0                  0      0    kernel: (com.apple.DriverKit-AppleBCMWLAN.dext) InfraPeers: Added unicast peer to database 72:05:E7:B0:E4:40 (total peers: 187)
+Q. First Column : Timestamp shows the date and time of the log entry.
+   Second Column : Thread ID shows the ID of the thread that generated the log entry.
+   Third Column : Type shows the type of log entry (e.g., Default, Error, Info).
+   Fourth Column : Activity ID shows the ID of the activity associated with the log entry.
+Q. Which field answers “what time did this happen”?
+Ans. Timestamp (First Column)
+Q. Which field answers “which program did this”?
+Ans. PID (Process ID)
+Q. How do you pull out only the lines that contain a particular word?
+Ans.You can use the grep command to pull out only the lines that contain a particular word. For example, to find lines containing the word "error", you would use:
+   grep "error" filename
+Q. What command counts the matching lines instead of printing all of them?
+Ans. grep -c "error" filename or grep "error" | wc -l filename
+Q. Go back through it and find two things in there that identify you or your machine. Could be a
+username. Could be a device name. Could be an app that says something about you. Could be a
+network you joined. Could be a file path with your name sitting in the middle of it.
+Ans. grep -c "sabhya_abhay" log_report.txt >> 0 times
+     grep -c "Abhays-MacBook-Pro.local" log_report.txt >> 0 times
+Q.What’s in that file that you wouldn’t want a stranger reading?
+Ans. The log file may contain sensitive information such as usernames, device names, application usage patterns, network connections, and file paths that could reveal personal or private data about the user or their machine.
